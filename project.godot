@@ -15,6 +15,11 @@ run/main_scene="uid://bm8ge6jscl8e"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+InventorySystem="*res://inventory_system/autoload/InventorySystem.gd"
+ItemRegistry="*res://inventory_system/autoload/ItemRegistry.gd"
+
 [display]
 
 window/size/viewport_width=1920
