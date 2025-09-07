@@ -11,125 +11,57 @@ A modular, expandable inventory system for Godot 4.x using Resources and built-i
 - **Event-driven design** - Signals for all major operations
 - **Performance optimized** - Efficient UI updates and minimal allocations
 
-## Quick Start
+## Installation
 
-### Prerequisites
+1. Copy the entire `inventory_system/` folder into your Godot project
+2. Add the autoload scripts in Project Settings:
+   - `inventory_system/autoload/InventorySystem.gd` as "InventorySystem"
+   - `inventory_system/autoload/ItemRegistry.gd` as "ItemRegistry"
+3. Run the demo scene: `inventory_system/scenes/demo/InventoryDemo.tscn`
 
-- Godot 4.x
-- Basic understanding of Godot scenes and scripts
-- Claude Code (for assisted implementation)
+## Demo
 
-### Implementation Order
+The system includes a fully functional demo scene that demonstrates:
+- Drag and drop between inventory slots
+- Automatic item stacking
+- Visual feedback and styling
+- Sample items with different properties
 
-Follow this order when implementing the system to avoid dependency issues:
+Run `inventory_system/scenes/demo/InventoryDemo.tscn` to see it in action.
 
-1. **Core Resources** (ItemResource, InventorySlot, InventoryData)
-2. **Core Logic** (InventoryManager)
-3. **UI Components** (InventorySlotUI, InventoryUI)
-4. **Drag & Drop System**
-5. **Autoload Setup**
-6. **Demo Scene**
-
-## Claude Code Implementation Guide
-
-Use these commands with Claude Code to implement the system step by step:
-
-### Step 1: Create Core Resources
-
-```bash
-# Create the base item resource
-claude code "Create ItemResource.gd in scripts/inventory/core/ based on the inventory system architecture. Include all properties: id, name, description, icon, stack_size, and ItemType enum."
-
-# Create inventory slot resource
-claude code "Create InventorySlot.gd in scripts/inventory/core/ with item property, quantity, and is_empty() method."
-
-# Create inventory data resource
-claude code "Create InventoryData.gd in scripts/inventory/core/ with slots array, max_slots, and initialization logic."
-```
-
-### Step 2: Implement Core Logic
-
-```bash
-# Create the inventory manager
-claude code "Create InventoryManager.gd in scripts/inventory/core/ with signals for item_added, item_removed, slot_changed. Include methods: add_item, remove_item, move_item, can_stack_items."
-
-# Create drag data structure
-claude code "Create DragData.gd in scripts/inventory/core/ with source_slot, item, quantity, and source_inventory properties."
-```
-
-### Step 3: Build UI Components
-
-```bash
-# Create slot UI component
-claude code "Create InventorySlotUI.gd in scripts/inventory/ui/ that extends Control. Include drag and drop overrides: _can_drop_data, _drop_data, _get_drag_data. Add slot_data and slot_index properties."
-
-# Create main inventory UI
-claude code "Create InventoryUI.gd in scripts/inventory/ui/ that manages a grid of InventorySlotUI components. Include setup method that takes InventoryManager parameter."
-
-# Create the corresponding scene files
-claude code "Create InventorySlotUI.tscn scene with Control root, background panel, item icon, and quantity label."
-
-claude code "Create InventoryUI.tscn scene with Control root containing GridContainer for slots."
-```
-
-### Step 4: Setup Autoload
-
-```bash
-# Create autoload scripts
-claude code "Create InventorySystem.gd in autoload/ folder with player_inventory property and initialization logic."
-
-claude code "Create ItemRegistry.gd in autoload/ folder with items_by_id dictionary and item lookup methods."
-```
-
-### Step 5: Create Demo
-
-```bash
-# Create demo scene and script
-claude code "Create InventoryDemo.gd in scripts/demo/ that sets up a test inventory with sample items and shows the UI."
-
-claude code "Create InventoryDemo.tscn scene that demonstrates the inventory system with test items."
-```
-
-### Step 6: Add Sample Items
-
-```bash
-# Create sample item resources
-claude code "Create health_potion.tres in resources/items/consumables/ - a consumable item that heals 50 HP."
-
-claude code "Create iron_sword.tres in resources/items/equipment/ - a weapon with attack power."
-
-claude code "Create oak_wood.tres in resources/items/materials/ - a stackable crafting material."
-```
-
-## Project Structure Reference
+## Project Structure
 
 ```
-scripts/inventory/
-├── core/
-│   ├── ItemResource.gd
-│   ├── InventorySlot.gd
-│   ├── InventoryData.gd
-│   ├── InventoryManager.gd
-│   └── DragData.gd
-├── ui/
-│   ├── InventoryUI.gd
-│   ├── InventorySlotUI.gd
-│   ├── ItemTooltip.gd
-│   └── DragPreview.gd
-└── containers/
-    ├── BaseContainer.gd
-    ├── ChestContainer.gd
-    └── ShopContainer.gd
-
-scenes/ui/inventory/
-├── InventoryUI.tscn
-├── InventorySlotUI.tscn
-├── ItemTooltip.tscn
-└── DragPreview.tscn
-
-autoload/
-├── InventorySystem.gd
-└── ItemRegistry.gd
+inventory_system/
+├── scripts/
+│   ├── core/
+│   │   ├── ItemResource.gd
+│   │   ├── InventorySlot.gd
+│   │   ├── InventoryData.gd
+│   │   ├── InventoryManager.gd
+│   │   └── DragData.gd
+│   ├── ui/
+│   │   ├── InventoryUI.gd
+│   │   └── InventorySlotUI.gd
+│   └── demo/
+│       └── InventoryDemo.gd
+├── scenes/
+│   ├── ui/
+│   │   ├── InventoryUI.tscn
+│   │   └── InventorySlotUI.tscn
+│   └── demo/
+│       └── InventoryDemo.tscn
+├── resources/
+│   └── items/
+│       ├── consumables/
+│       │   └── health_potion.tres
+│       ├── equipment/
+│       │   └── iron_sword.tres
+│       └── materials/
+│           └── oak_wood.tres
+└── autoload/
+    ├── InventorySystem.gd
+    └── ItemRegistry.gd
 ```
 
 ## Usage Examples
@@ -138,7 +70,7 @@ autoload/
 
 ```gdscript
 # In your main scene
-var inventory_ui = preload("res://scenes/ui/inventory/InventoryUI.tscn").instantiate()
+var inventory_ui = preload("res://inventory_system/scenes/ui/InventoryUI.tscn").instantiate()
 inventory_ui.setup(InventorySystem.player_inventory)
 add_child(inventory_ui)
 ```
@@ -147,7 +79,7 @@ add_child(inventory_ui)
 
 ```gdscript
 # Load an item resource
-var health_potion = preload("res://resources/items/consumables/health_potion.tres")
+var health_potion = preload("res://inventory_system/resources/items/consumables/health_potion.tres")
 
 # Add to inventory
 InventorySystem.player_inventory.add_item(health_potion, 3)
@@ -164,8 +96,26 @@ new_item.description = "A sword imbued with magical energy"
 new_item.stack_size = 1
 new_item.item_type = ItemResource.ItemType.EQUIPMENT
 
-# Or create .tres files in resources/items/
+# Or create .tres files in inventory_system/resources/items/
 ```
+
+## TODOs
+
+### Immediate Improvements
+- [ ] **Static demo scene** - Add all items manually via the editor instead of creating them in code
+- [ ] **Add icons** - Create and assign icon textures for existing item resources
+  - health_potion.tres needs a potion icon
+  - iron_sword.tres needs a sword icon  
+  - oak_wood.tres needs a wood plank icon
+
+### Future Enhancements
+- [ ] **Item tooltips** - Show item details on hover
+- [ ] **Better drag previews** - Custom drag preview with item icon
+- [ ] **Slot filtering** - Restrict certain items to specific slots
+- [ ] **Equipment slots** - Dedicated slots for weapons, armor, etc.
+- [ ] **Auto-sorting** - Sort inventory by item type or name
+- [ ] **Save/load system** - Persist inventory state
+- [ ] **Sound effects** - Audio feedback for drag/drop actions
 
 ## Signals Reference
 
@@ -222,80 +172,14 @@ Override these methods in `InventorySlotUI`:
 - Use object pooling for large inventories
 - Minimize signal connections
 
-### Debug Commands
-
-```bash
-# Check implementation with Claude Code
-claude code "Review the InventoryManager implementation and suggest optimizations"
-
-claude code "Debug why drag and drop isn't working in InventorySlotUI"
-
-claude code "Add error handling and validation to the inventory system"
-```
-
-## Testing
-
-### Manual Tests
-
-1. **Basic Operations:**
-   - Add items to inventory
-   - Remove items from inventory
-   - Drag items between slots
-
-2. **Edge Cases:**
-   - Drag onto occupied slot
-   - Stack similar items
-   - Drag non-stackable items
-
-3. **UI Responsiveness:**
-   - Hover effects
-   - Visual feedback during drag
-   - Proper preview generation
-
-### Automated Tests
-
-```bash
-# Create unit tests with Claude Code
-claude code "Create unit tests for InventoryManager class covering add_item, remove_item, and move_item methods"
-
-claude code "Create integration tests for the drag and drop system"
-```
-
-## Next Steps
-
-### Phase 1: Core Features ✓
-- Basic drag and drop
-- Item stacking
-- Visual feedback
-
-### Phase 2: Enhanced UI
-- Tooltips on hover
-- Better drag previews
-- Slot filtering
-
-### Phase 3: Advanced Features
-- Equipment slots
-- Item categories
-- Auto-sorting
-
-### Phase 4: Persistence
-- Save/load system
-- Serialization
-- World state management
-
 ## Contributing
 
 When extending the system:
 
 1. Follow the existing architecture patterns
-2. Use Claude Code for complex implementations
-3. Test thoroughly with edge cases
-4. Update this README with new features
+2. Test thoroughly with edge cases
+3. Update this README with new features
 
 ## License
 
 [Add your license here]
-
----
-
-**Ready to implement?** Start with Step 1 above and use Claude Code to build each component systematically.

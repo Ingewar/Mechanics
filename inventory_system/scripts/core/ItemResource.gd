@@ -1,4 +1,5 @@
-class_name ItemResource extends Resource
+class_name ItemResource
+extends Resource
 
 enum ItemType {
 	CONSUMABLE,
