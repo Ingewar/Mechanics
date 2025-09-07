@@ -1,4 +1,5 @@
-class_name InventorySlot extends Resource
+class_name InventorySlot
+extends Resource
 
 @export var item: ItemResource
 @export var quantity: int = 0
