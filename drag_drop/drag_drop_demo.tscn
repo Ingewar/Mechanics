@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqhpjayqml1bv"]
+
+[ext_resource type="Script" uid="uid://cufvpq3tl68kr" path="res://drag_drop/draggable.gd" id="1_f36ot"]
+
+[node name="drag_drop_demo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Draggable" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 696.0
+offset_top = 456.0
+offset_right = 736.0
+offset_bottom = 496.0
+scale = Vector2(5.12, 2.88)
+script = ExtResource("1_f36ot")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Draggable"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2

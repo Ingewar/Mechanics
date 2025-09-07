@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DragDropObjectType" load_steps=3 format=3 uid="uid://b7nj27hnxey7r"]
+
+[ext_resource type="Texture2D" uid="uid://cb288m5c7sk3h" path="res://icon.svg" id="1_18gvw"]
+[ext_resource type="Script" uid="uid://d08267ly8txbq" path="res://drag_and_drop/DragDropObjectType.gd" id="2_h2a2n"]
+
+[resource]
+script = ExtResource("2_h2a2n")
+type_name = "Key"
+type_id = "key"
+color = Color(1, 0.4, 1, 1)
+icon = ExtResource("1_18gvw")
+metadata/_custom_type_script = "uid://d08267ly8txbq"

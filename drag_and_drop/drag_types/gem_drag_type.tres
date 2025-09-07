@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DragDropObjectType" load_steps=3 format=3 uid="uid://dsx8bhup8s10f"]
+
+[ext_resource type="Texture2D" uid="uid://bdy6js1oqqpmb" path="res://drag_and_drop/art/diamond_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" id="1_nm3qj"]
+[ext_resource type="Script" uid="uid://d08267ly8txbq" path="res://drag_and_drop/DragDropObjectType.gd" id="2_wtee1"]
+
+[resource]
+script = ExtResource("2_wtee1")
+type_name = "Gem"
+type_id = "gem"
+color = Color(3.46541e-06, 0.631064, 0.63142, 1)
+icon = ExtResource("1_nm3qj")
+metadata/_custom_type_script = "uid://d08267ly8txbq"
