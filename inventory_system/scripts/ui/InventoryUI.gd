@@ -1,5 +1,4 @@
-class_name InventoryUI
-extends Control
+class_name InventoryUI extends Control
 
 @onready var grid_container: GridContainer = $GridContainer
 @export var slot_scene: PackedScene = preload("res://inventory_system/scenes/ui/InventorySlotUI.tscn")
@@ -10,7 +9,12 @@ var slot_ui_instances: Array[InventorySlotUI] = []
 func setup(manager: InventoryManager):
 	inventory_manager = manager
 	inventory_manager.slot_changed.connect(_on_slot_changed)
-	_create_slot_ui_elements()
+	
+	if is_inside_tree():
+		_create_slot_ui_elements()
+	else:
+		await ready
+		_create_slot_ui_elements()
 
 func _create_slot_ui_elements():
 	if not inventory_manager or not inventory_manager.inventory_data:

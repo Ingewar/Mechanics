@@ -1,17 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://chrkxrv4qr5kk"]
+[gd_scene load_steps=3 format=3 uid="uid://chrkxrv4qr5kk"]
 
-[ext_resource type="Script" path="res://inventory_system/scripts/ui/InventoryUI.gd" id="1_8w3jn"]
+[ext_resource type="Script" uid="uid://cwyrqbol14rbp" path="res://inventory_system/scripts/ui/InventoryUI.gd" id="1_8w3jn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.15, 0.15, 0.15, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="InventoryUI" type="Control"]
+custom_minimum_size = Vector2(320, 256)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 320.0
 offset_bottom = 320.0
 script = ExtResource("1_8w3jn")
 
+[node name="BackgroundPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
 columns = 5

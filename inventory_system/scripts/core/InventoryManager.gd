@@ -1,5 +1,4 @@
-class_name InventoryManager
-extends RefCounted
+class_name InventoryManager extends Resource
 
 signal item_added(item: ItemResource, quantity: int)
 signal item_removed(item: ItemResource, quantity: int)

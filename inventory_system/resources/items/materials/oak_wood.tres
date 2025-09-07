@@ -1,0 +1,11 @@
+[gd_resource type="ItemResource" script_class="ItemResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://inventory_system/scripts/core/ItemResource.gd" id="1_oak_wood"]
+
+[resource]
+script = ExtResource("1_oak_wood")
+id = "oak_wood"
+name = "Oak Wood"
+description = "Sturdy oak wood planks. Essential material for crafting and construction."
+stack_size = 64
+item_type = 2

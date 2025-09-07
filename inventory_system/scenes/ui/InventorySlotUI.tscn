@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bq1wpv4k5swni"]
 
-[ext_resource type="Script" path="res://inventory_system/scripts/ui/InventorySlotUI.gd" id="1_5q8xn"]
+[ext_resource type="Script" uid="uid://dfxte1lrnfypb" path="res://inventory_system/scripts/ui/InventorySlotUI.gd" id="1_5q8xn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1x3v7"]
 bg_color = Color(0.2, 0.2, 0.2, 0.8)
@@ -11,6 +11,7 @@ border_width_bottom = 2
 border_color = Color(0.6, 0.6, 0.6, 1)
 
 [node name="InventorySlotUI" type="Control"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 64.0
@@ -22,6 +23,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1x3v7")
 
 [node name="ItemIcon" type="TextureRect" parent="."]
@@ -33,6 +36,8 @@ offset_left = 4.0
 offset_top = 4.0
 offset_right = -4.0
 offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
@@ -45,6 +50,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -20.0
 offset_top = -20.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "99"
 horizontal_alignment = 2
 vertical_alignment = 2
