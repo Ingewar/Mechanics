@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl7e5qjm8xmg7"]
+
+[ext_resource type="Script" uid="uid://cxalgj8xsqr0o" path="res://inventory_system/scripts/demo/InventoryDemo.gd" id="1_2v5kx"]
+[ext_resource type="PackedScene" uid="uid://chrkxrv4qr5kk" path="res://inventory_system/scenes/ui/InventoryUI.tscn" id="2_8w3jn"]
+
+[node name="InventoryDemo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2v5kx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Inventory System Demo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="InventoryUI" parent="VBoxContainer" instance=ExtResource("2_8w3jn")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="AddHealthPotionButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+layout_mode = 2
+text = "Add Health Potion"
+
+[node name="ClearInventoryButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+layout_mode = 2
+text = "Clear Inventory"
+
+[node name="Instructions" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b]Instructions:[/b]
+• Drag and drop items between slots
+• Items will stack automatically if possible
+• Use buttons to test adding/clearing items
+• Hover over slots to see interactions"
+
+[connection signal="pressed" from="VBoxContainer/ButtonContainer/AddHealthPotionButton" to="." method="_on_add_health_potion_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonContainer/ClearInventoryButton" to="." method="_on_clear_inventory_pressed"]
